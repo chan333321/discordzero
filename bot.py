@@ -68,13 +68,8 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.author.bot:
-        return
-
-    if message.channel.id == WEBHOOK_CHANNEL_ID:
+    if message.author.bot and message.channel.id == WEBHOOK_CHANNEL_ID:
         await message.add_reaction('✅')
-
-    await bot.process_commands(message)  # 명령어 사용 가능하게 추가!
 
 @bot.event
 async def on_reaction_add(reaction, user):
